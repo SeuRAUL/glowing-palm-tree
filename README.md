@@ -1,24 +1,26 @@
-# README
+# PontoSolido
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## A check-in application in Rails with MySQL.
 
-Things you may want to cover:
+- Ruby version 2.6.6
 
-* Ruby version
+- Rails version 6.0.4
 
-* System dependencies
+- MySQL-server version 5.7
 
-* Configuration
+---
 
-* Database creation
+## Run
 
-* Database initialization
+run `bundle install`
 
-* How to run the test suite
+run `rake db:create db:migrate`
 
-* Services (job queues, cache servers, search engines, etc.)
+optional to populate DB with some data
 
-* Deployment instructions
+run `rake db:seed`
 
-* ...
+---
+## About
+
+A logged user can make a Check-in, mark the time of start and end of lunch and Check-out for today's time at work.
