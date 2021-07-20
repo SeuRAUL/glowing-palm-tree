@@ -13,6 +13,38 @@ class AppointmentsController < ApplicationController
     @appointment = current_user.appointments.build(date: Time.zone.now, in: Time.zone.now)
   end
 
+  def check_in
+    if current_user.appointments.find_by(date: Time.zone.now).nil?
+      @appointment = current_user.appointments.build(date: Time.zone.now, in: Time.zone.now)
+      @appointment.save
+      redirect_to appointments_path
+    end
+  end
+
+  def lunch_start
+    @appointment = current_user.appointments.find_by(date: Time.zone.now)
+    if !@appointment.nil? and @appointment.lunch_start.nil?
+      @appointment.update(lunch_start: Time.zone.now)
+      redirect_to appointments_path
+    end
+  end
+
+  def lunch_end
+    @appointment = current_user.appointments.find_by(date: Time.zone.now)
+    if !@appointment.nil? and !@appointment.lunch_start.nil? and @appointment.lunch_end.nil?
+      @appointment.update(lunch_end: Time.zone.now)
+      redirect_to appointments_path
+    end
+  end
+
+  def check_out
+    @appointment = current_user.appointments.find_by(date: Time.zone.now)
+    if !@appointment.nil? and ( !@appointment.lunch_end.nil? or @appointment.lunch_start.nil? )
+      @appointment.update(out: Time.zone.now)
+      redirect_to appointments_path
+    end
+  end
+
   def edit
   end
 
