@@ -1,0 +1,15 @@
+<div class="p-5 mb-4 bg-light rounded-3">
+  <h1 class="display-4"> <%= @appointment.date.strftime("%d/%m/%Y") %> </h1>
+
+  <p class="lead">
+    Start at:  <%= @appointment.in.nil? ? "--" : @appointment.in.strftime("%k:%M") %> <br/>
+    Goes to lunch at:  <%= @appointment.lunch_start.nil? ? "--" : @appointment.lunch_end.strftime("%k:%M")  %> <br/>
+    Back from lunch at:  <%= @appointment.lunch_end.nil? ? "--" : @appointment.lunch_start.strftime("%k:%M")  %> <br/>
+    End work at:  <%= @appointment.out.nil? ? "--" : @appointment.out.strftime("%k:%M")  %> 
+  </p>
+
+</div>
+
+<br/>
+<%= link_to 'Edit', edit_appointment_path(@appointment), class:"btn btn-secondary btn-sm" %>
+<%= link_to 'Back', appointments_path, class:"btn btn-dark btn-sm" %>

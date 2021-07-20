@@ -1,15 +1,16 @@
 class AppointmentsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_appointment, only: [:show, :edit, :update, :destroy]
 
   def index
-    @appointments = current_user.appointments
+    @appointments = current_user.appointments.order(date: :desc)
   end
 
   def show
   end
 
   def new
-    @appointment = current_user.appointments.build
+    @appointment = current_user.appointments.build(date: Time.zone.now, in: Time.zone.now)
   end
 
   def edit

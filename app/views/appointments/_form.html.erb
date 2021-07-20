@@ -1,0 +1,42 @@
+<%= form_with(model: appointment, local: true) do |form| %>
+  <% if appointment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(appointment.errors.count, "error") %> prohibited this appointment from being saved:</h2>
+
+      <ul>
+        <% appointment.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field mb-3 form-group">
+    <%= form.label :Date %>
+    <%= form.date_field :date, class:"form-control", placeholder:"Date" %>
+  </div>
+
+  <div class="field mb-3 form-group">
+    <%= form.label :Enter %>
+    <%= form.time_field :in, class:"form-control", placeholder:"Start work at" %>
+  </div>
+
+  <div class="field mb-3 form-group">
+    <%= form.label "Lunch Start" %>
+    <%= form.time_field :lunch_start, class:"form-control", placeholder:"Stop to lunch at" %>
+  </div>
+
+  <div class="field mb-3 form-group">
+    <%= form.label "Lunch end" %>
+    <%= form.time_field :lunch_end, class:"form-control", placeholder:"Back from lunch at" %>
+  </div>
+
+  <div class="field mb-3 form-group">
+    <%= form.label :Out %>
+    <%= form.time_field :out, class:"form-control", placeholder:"Finish work at" %>
+  </div>
+
+  <div class="actions" >
+    <%= form.submit class:"btn btn-secondary" %>
+  </div>
+<% end %>

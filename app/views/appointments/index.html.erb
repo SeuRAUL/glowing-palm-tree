@@ -1,2 +1,34 @@
-<h1>Appointments#index</h1>
-<p>Find me in app/views/appointments/index.html.erb</p>
+<h1>Appointments</h1>
+
+<%= link_to 'Check In', new_appointment_path, class:"mb-3 btn btn-secondary" %>
+
+<table class="table table-striped table-bordered table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th>Date</th>
+        <th>In</th>
+        <th>Lunch start</th>
+        <th>Lunch end</th>
+        <th>Out</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @appointments.each do |appointment| %>
+        <tr>
+          <td><%= appointment.date.nil? ?         "--" : appointment.date.strftime("%d/%m/%Y") %></td>
+          <td><%= appointment.in.nil? ?           "--" : appointment.in.strftime("%k:%M") %></td>
+          <td><%= appointment.lunch_start.nil? ?  "--" : appointment.lunch_start.strftime("%k:%M")  %></td>
+          <td><%= appointment.lunch_end.nil? ?    "--" : appointment.lunch_end.strftime("%k:%M") %></td>
+          <td><%= appointment.out.nil? ?          "--" : appointment.out.strftime("%k:%M") %></td>
+          <td>
+            <%= link_to 'Edit', edit_appointment_path(appointment), class:"btn btn-secondary btn-sm" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
